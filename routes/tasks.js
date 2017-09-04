@@ -41,4 +41,15 @@ router.post('/task', (req, res, next) => {
         })
     }
 });
+
+// delete one task
+router.delete('/task/:id', (req, res, next) => {
+    db.tasks.remove( {_id: mongojs.ObjectId(req.params.id)}, (err, task) => {
+        if(err){
+            res.send(err);
+        }
+        res.json(task);
+    });
+});
+
 module.exports = router;
